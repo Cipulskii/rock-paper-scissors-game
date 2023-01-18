@@ -1,0 +1,43 @@
+import pygame
+import random
+
+pygame.init()
+
+window = pygame.display.set_mode([600, 450])
+
+snake_x = 100
+snake_y = 100
+
+while True:
+    
+    # saraksts ar notikumiem
+    events = pygame.event.get()
+
+    for event in events:
+
+        if event.type == pygame.QUIT:
+            pygame.quit()
+
+        if event.type == pygame.KEYDOWN:
+            
+            if event.key == pygame.K_w:
+                snake_y -= 20
+
+            elif event.key == pygame.K_a:
+                snake_x -= 20
+
+            elif event.key == pygame.K_s:
+                snake_y += 20
+
+            elif event.key == pygame.K_d:
+                snake_x += 20
+
+    snake = pygame.Rect(snake_x, snake_y, 20, 20)
+
+    red = random.randint(0, 255)
+    green = random.randint(0, 255)
+    blue = random.randint(0, 255)
+
+    window.fill([0, 0, 0])
+    pygame.draw.rect(window, [red, green, blue], snake)
+    pygame.display.update()
